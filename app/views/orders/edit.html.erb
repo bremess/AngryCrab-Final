@@ -1,0 +1,53 @@
+<% if @item.errors.any? %>
+  <% @item.errors.full_messages.each do |message| %>
+    <div class="alert alert-dismissable alert-danger">
+      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+      <%= message %>
+    </div>
+  <% end %>
+<% end %>
+
+<div class="page-header">
+  <h1>Edit Order #<%= @item.id %></h1>
+</div>
+
+<%= form_tag(order_path(@item.id), :method => :patch)  do  %>
+   
+    <div class="block">
+        <label for="fname"> First name:
+            <input type="text" id="fname" name="fname"  value=<%=@item.fname %>>
+        </label> <br> <br>
+    </div>
+    
+     <div class="block">
+        <label for="lname"> Last name:
+            <input type="text" id="lname" name="lname"  value=<%=@item.lname %>>
+        </label> <br> <br>
+    </div>
+    
+    <div class="block">
+        <label for="email"> E-mail:
+            <input type="text" id="email" name="email"  value=<%=@item.email %> >
+        </label> <br> <br>
+    </div>
+    
+    <div class="block">
+        <label for="phone"> Phone number:
+            <input type="text" id="phone" name="phone"  value=<%=@item.phone %> >
+        </label> <br> <br>
+    </div>
+    
+    <div class="block">
+        <label for="pickup_time"> Pickup time:
+            <input type="text" id="pickup_time" name="pickup_time"  value=<%=@item.pickup_time%> >
+        </label> <br> <br>
+    </div>
+    
+   <button type="button" class="btn btn-primary">
+      <a href="/orders"> Back   </a>
+    </button>
+    <input type="submit"> <br>
+    
+<% end %>
+
+

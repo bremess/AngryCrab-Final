@@ -1,0 +1,57 @@
+<!-- Validation failure messages -->
+
+<% if @item.errors.present? %>
+    <p>The following error prevented your menu item for being saved</p>
+    <ul>
+      <% @item.errors.full_messages.each do |message| %>
+       <li> <%= message %></li>
+       <% end %>
+   </ul>
+<% end %>
+
+<%= form_tag(order_items_path)   do  %>
+   
+     <div class="block">
+        <label for="menuid"> Menu id:
+           <%= select_tag :menu_id, options_from_collection_for_select(Menu.all, :id, :name, @item.menu_id) %>
+           
+           
+        </label> <br> <br>
+    </div>
+    
+    <div class="block">
+        <label for="orderid"> Order id:
+             <%= select_tag :order_id, options_from_collection_for_select(Order.all, :id, :id, @item.order_id) %>
+        </label> <br> <br>
+    </div>
+    
+    <div class="block">
+        <label for="sauce"> Sauce:
+           <%= select_tag :sauce, options_for_select( ["no Sauce", "sauce1", "sauce2", "sauce3"], @item.sauce) %>
+            
+        </label> <br> <br>
+    </div>
+    
+    <div class="block">
+        <label for="heat"> Heat:
+             <%= select_tag :heat, options_for_select( ["no spicy", "mild", "hot", "super hot"], @item.heat) %>
+        </label> <br> <br>
+    </div>
+    
+    <div class="block">
+        <label for="quantity"> Quantity:
+            <%= select_tag :quantity, options_for_select( [1, 2, 3, 4, 5, 6], @item.quantity) %>
+        </label> <br> <br>
+    </div>
+    
+    
+    
+    <div class="form-group"> 
+        <div class="col-sm-offset-2 col-sm-10">
+            <button type="submit" class="btn btn-default">Submit</button>
+        </div>
+    </div>
+   
+<% end %>
+
+

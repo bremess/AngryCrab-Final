@@ -1,0 +1,58 @@
+<% if @item.errors.any? %>
+  <% @item.errors.full_messages.each do |message| %>
+    <div class="alert alert-dismissable alert-danger">
+      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+      <%= message %>
+    </div>
+  <% end %>
+<% end %>
+
+<div class="page-header">
+  <h1>Edit Order Item #<%= @item.id %></h1>
+</div>
+
+<%= form_tag(order_item_path(@item.id), :method => :patch)  do  %>
+   
+    <div class="block">
+        <label for="menuid"> Menu id:
+           <%= select_tag :menu_id, options_from_collection_for_select(Menu.all, :id, :name, @item.menu_id) %>
+           
+           
+        </label> <br> <br>
+    </div>
+    
+    <div class="block">
+        <label for="orderid"> Order id:
+             <%= select_tag :order_id, options_from_collection_for_select(Order.all, :id, :id, @item.order_id) %>
+        </label> <br> <br>
+    </div>
+    
+    <div class="block">
+        <label for="sauce"> Sauce:
+           <%= select_tag :sauce, options_for_select( ["no Sauce", "sauce1", "sauce2", "sauce3"], @item.sauce) %>
+            
+        </label> <br> <br>
+    </div>
+    
+    <div class="block">
+        <label for="heat"> Heat:
+             <%= select_tag :heat, options_for_select( ["no spicy", "mild", "hot", "super hot"], @item.heat) %>
+        </label> <br> <br>
+    </div>
+    
+    <div class="block">
+        <label for="quantity"> Quantity:
+            <%= select_tag :quantity, options_for_select( [1, 2, 3, 4, 5, 6], @item.quantity) %>
+        </label> <br> <br>
+    </div>
+    
+    
+    
+    <button type="button" class="btn btn-primary">
+      <a href="/menus"> Back   </a>
+    </button>
+    <input type="submit"> <br>
+    
+<% end %>
+
+

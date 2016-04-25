@@ -1,0 +1,48 @@
+<!-- Validation failure messages -->
+
+<% if @menu.errors.present? %>
+    <p>The following error prevented your menu item for being saved</p>
+    <ul>
+      <% @menu.errors.full_messages.each do |message| %>
+       <li> <%= message %></li>
+       <% end %>
+   </ul>
+<% end %>
+
+<%= form_tag(menus_path)   do  %>
+   
+    <div class="block">
+        <label for="name"> Item name:
+            <input type="text" id="name" name="name" placeholder="Item Name" value=<%=@menu.name %>>
+        </label> <br> <br>
+    </div>
+    
+    <div class="block">
+        <label for="photo"> Photo:
+            <input type="text" id="photo" name="photo" placeholder="Photo" value=<%=@menu.photo %> >
+        </label> <br> <br>
+    </div>
+    
+    <div class="block">
+        <label for="description"> Description:
+            <textarea type="text" id="description" name="description" placeholder="Description"> <%=@menu.description %> </textarea>
+        </label> <br> <br>
+    </div>
+    
+    <div class="block">
+        <label for="price"> Price:
+            <input type="text" id="price" name="price" placeholder="Price" value=<%=@menu.price %> >
+        </label> <br> <br>
+    </div>
+    
+    
+    
+    <div class="form-group"> 
+        <div class="col-sm-offset-1 col-sm-11">
+            <button type="submit" class="btn btn-default">Submit</button>
+        </div>
+    </div>
+   
+<% end %>
+
+

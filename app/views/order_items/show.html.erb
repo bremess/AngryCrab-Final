@@ -1,0 +1,41 @@
+<div class="page-header">
+  <h1>Order Item #<%= @item.id %></h1>
+</div>
+
+
+
+<div class="row">
+  <div class="col-md-12">
+    <dl class="dl-horizontal">
+      
+       
+      <dt>Menu Id</dt>
+      <dd><%= Menu.find(@item.menu_id).name %></dd>
+
+      <dt>Order Id </dt>
+      <dd><%= @item.order_id %></dd> 
+      
+      <dt>Sauce</dt>
+      <dd><%= @item.sauce %></dd>
+
+      <dt>Heat Level</dt>
+      <dd><%= @item.heat %></dd>
+
+      <dt>Quantity</dt>
+      <dd><%= @item.quantity %></dd>
+
+      
+    </dl>
+
+
+    <button type="button" class="btn btn-primary">
+      <a href="/order_items"> Back   </a>
+    </button>
+    <button  type="button" class="btn btn-warning">
+      <a href="/order_items/<%= @item.id %>/edit" > Edit  </a>
+    </button>
+    <button  type="button" class="btn btn-danger">
+      <a href="/order_items/<%= @item.id %>"  rel="nofollow"> Delete </a>
+     </button>
+    </div>
+</div>

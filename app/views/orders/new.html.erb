@@ -1,0 +1,54 @@
+<!-- Validation failure messages -->
+
+<% if @item.errors.present? %>
+    <p>The following error prevented your menu item for being saved</p>
+    <ul>
+      <% @item.errors.full_messages.each do |message| %>
+       <li> <%= message %></li>
+       <% end %>
+   </ul>
+<% end %>
+
+<%= form_tag(orders_path)   do  %>
+   <br>
+   <br>
+   <br>
+    <div class="block">
+        <label for="fname"> First Name:
+            <input type="text" id="fname" name="fname" placeholder="First Name" value=<%=@item.fname %>>
+        </label> <br> <br>
+    </div>
+    
+    <div class="block">
+        <label for="lname"> Last Name:
+            <input type="text" id="lname" name="lname" placeholder="Last Name" value=<%=@item.lname %>>
+        </label> <br> <br>
+    </d
+    
+    <div class="block">
+        <label for="email"> Email:
+            <input type="text" id="email" name="email" placeholder="email" value=<%=@item.email %> >
+        </label> <br> <br>
+    </div>
+    
+    <div class="block">
+        <label for="phone"> Phone number:
+            <input type="text" id="phone" name="phone" placeholder="phone" value=<%=@item.phone %> >
+        </label> <br> <br>
+    </div>
+    
+    <div class="block">
+        <label for="pickup_time"> Pickup time:
+            <input type="text" id="pickup_time" name="pickup_time" placeholder="pickup_time" value=<%=@item.pickup_time %> >
+        </label> <br> <br>
+    </div>
+    
+    <div class="form-group"> 
+        <div class="col-sm-offset-2 col-sm-10">
+            <button type="submit" class="btn btn-default">Submit</button>
+        </div>
+    </div>
+   
+<% end %>
+
+

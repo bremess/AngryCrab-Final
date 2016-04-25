@@ -1,0 +1,99 @@
+<div class="page-header">
+  <h1>Order #<%= @order.id %></h1>
+</div>
+
+
+
+<div class="row">
+  <div class="col-md-12">
+    <dl class="dl-horizontal">
+      <dt>First Name</dt>
+      <dd><%= @order.fname %></dd>
+
+      <dt>Last Name</dt>
+      <dd><%= @order.lname %></dd>
+
+      <dt>Email</dt>
+      <dd><%= @order.email %></dd>
+
+      <dt>Phone</dt>
+      <dd><%= @order.phone %></dd>
+
+      <dt>Pickup time</dt>
+      <dd><%= @order.pickup_time %></dd>
+    </dl>
+<!-- Order-Item New.html form -->
+<!-- Validation failure messages -->
+<ul>
+  <% OrderItem.where(:order_id => @order.id).each do |order_item| %>
+   
+      <% menu_item=Menu.find(order_item.menu_id) %>
+          <li> <%= menu_item.name %> <%= order_item.quantity %> <%= order_item.sauce%> <%= order_item.heat %>      </li>   
+     <% end %> 
+</ul>
+
+
+<% if @order_item.errors.present? %>
+    <p>The following error prevented your menu order_item for being saved</p>
+    <ul>
+      <% @order_item.errors.full_messages.each do |message| %>
+       <li> <%= message %></li>
+       <% end %>
+   </ul>
+<% end %>
+
+<%= form_tag(order_items_path)   do  %>
+   
+     <div class="block">
+        <label for="menuid"> Menu item:
+           <%= select_tag :menu_id, options_from_collection_for_select(Menu.all, :id, :name, @order_item.menu_id) %>
+           
+           
+        </label> <br> <br>
+    </div>
+    
+    <div class="block">
+        <input type="hidden" name="order_id" value="<%= @order.id %>">
+       
+    </div>
+    
+    <div class="block">
+        <label for="sauce"> Sauce:
+           <%= select_tag :sauce, options_for_select( ["no Sauce", "sauce1", "sauce2", "sauce3"], @order_item.sauce) %>
+            
+        </label> <br> <br>
+    </div>
+    
+    <div class="block">
+        <label for="heat"> Heat:
+             <%= select_tag :heat, options_for_select( ["no spicy", "mild", "hot", "super hot"], @order_item.heat) %>
+        </label> <br> <br>
+    </div>
+    
+    <div class="block">
+        <label for="quantity"> Quantity:
+            <%= select_tag :quantity, options_for_select( [1, 2, 3, 4, 5, 6], @order_item.quantity) %>
+        </label> <br> <br>
+    </div>
+    
+    
+    
+    <div class="form-group"> 
+        <div class="col-sm-offset-2 col-sm-10">
+            <button type="submit" class="btn btn-default">Submit</button>
+        </div>
+    </div>
+   
+<% end %>
+
+    <button type="button" class="btn btn-primary">
+      <a href="/orders"> Back   </a>
+    </button>
+    <button  type="button" class="btn btn-warning">
+      <a href="/orders/<%= @order.id %>/edit" > Edit  </a>
+    </button>
+    <button  type="button" class="btn btn-danger">
+       <%= link_to "Delete", order_url(@order.id), :method => :delete, :data => {:confirm => "Are you sure?" } %>
+     </button>
+    </div>
+</div>

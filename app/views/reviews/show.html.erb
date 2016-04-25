@@ -1,0 +1,33 @@
+<div class="page-header">
+  <h1>Review #<%= @item.id %></h1>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <dl class="dl-horizontal">
+      <dt>Name</dt>
+      <dd><%= @item.name %></dd>
+
+      <dt>City</dt>
+      <dd><%= @item.city %></dd>
+
+      <dt>State</dt>
+      <dd><%= @item.state %></dd>
+
+      <dt>Comment</dt>
+      <dd><%= @item.message %></dd>
+
+      <dt>Rate</dt>
+      <dd><%= @item.rate %></dd>
+    </dl>
+
+     <% if current_user.present?   %>
+          <div class="btn btn-warning"> <%= link_to "Edit", edit_review_url(@item.id) %> </div>
+          <div class="btn btn-danger">  <%= link_to "Delete", review_url(@item.id), :method => :delete, :data => {:confirm => "Are you sure?" } %> </div>
+     <% else %>
+          <div class="btn btn-primary"> <%= link_to "Back", reviews_url %> </div>
+     <% end %>
+
+   
+    </div>
+</div>

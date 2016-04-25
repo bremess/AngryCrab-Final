@@ -1,0 +1,52 @@
+<% if @item.errors.any? %>
+  <% @item.errors.full_messages.each do |message| %>
+    <div class="alert alert-dismissable alert-danger">
+      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+      <%= message %>
+    </div>
+  <% end %>
+<% end %>
+
+<div class="page-header">
+  <h1>Review #<%= @item.id %></h1>
+</div>
+
+<%= form_tag(review_path(@item.id), :method => :patch)  do  %>
+   
+    <div class="block">
+        <label for="name"> Name:
+            <input type="text" id="name" name="name"  value=<%=@item.name %>>
+        </label> <br> <br>
+    </div>
+    
+     <div class="block">
+        <label for="city"> City:
+            <input type="text" id="city" name="city"  value=<%=@item.city %> >
+        </label> <br> <br>
+    </div>
+    
+    <div class="block">
+        <label for="state"> State:
+            <input type="text" id="state" name="state"  value=<%=@item.state %> >
+        </label> <br> <br>
+    </div>
+    
+    <div class="block">
+        <label for="message"> Comment:
+            <textarea type="text" id="message" name="message" > <%=@item.message %> </textarea>
+        </label> <br> <br>
+    </div>
+     <div class="block">
+        <label for="rate"> Rating:
+            <input type="text" id="rate" name="rate"  value=<%=@item.rate %>>
+        </label> <br> <br>
+    </div>
+    
+    <button type="button" class="btn btn-primary">
+      <a href="/orders"> Back   </a>
+    </button>
+    <input type="submit"> <br>
+    
+<% end %>
+
+
